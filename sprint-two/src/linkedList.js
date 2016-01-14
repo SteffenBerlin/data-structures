@@ -30,6 +30,12 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
+    var pointer = this.head;
+    
+    while(pointer !== null && pointer.value !== target){
+      pointer = pointer.next;
+    }
+    return Boolean(pointer);
   };
 
   return list;
