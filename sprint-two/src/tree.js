@@ -3,7 +3,8 @@ var Tree = function(value) {
   newTree.value = value;
 
   // your code here
-  newTree.children = null;  // fix me
+  _.extend(newTree, treeMethods);
+  newTree.children = [];  // fix me
 
   return newTree;
 };
@@ -11,9 +12,27 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
+	this.children.push(Tree(value));
 };
 
 treeMethods.contains = function(target) {
+	var result = false;
+
+	var helper = function(node) {
+		if (!result) {
+			if (node.value === target) result = true;
+
+			if (node.children) {
+				for (var i = 0; i < node.children.length; i++) {
+					helper(node.children[i]);
+				}
+			}
+		}
+	};
+
+	helper(this);
+	
+	return result;
 };
 
 
