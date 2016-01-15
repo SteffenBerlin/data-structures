@@ -5,42 +5,42 @@ var BinarySearchTree = function(value) {
 	binarySearchTree.value = value;
 
 	binarySearchTree.insert = function(value) {
-		if (binarySearchTree.value < value) {
-			if (binarySearchTree.right === null) {
-				binarySearchTree.right = BinarySearchTree(value);
+		if (this.value < value) {
+			if (this.right === null) {
+				this.right = BinarySearchTree(value);
 			} else {
-				binarySearchTree.right.insert(value);
+				this.right.insert(value);
 			}
 		}
 		else {
-			if (binarySearchTree.left === null) {
-				binarySearchTree.left = BinarySearchTree(value);
+			if (this.left === null) {
+				this.left = BinarySearchTree(value);
 			} else {
-				binarySearchTree.left.insert(value);
+				this.left.insert(value);
 			}
 		}
 	};
 
 	binarySearchTree.contains = function(value) {
-		if(binarySearchTree.value === value){
+		if(this.value === value){
 			return true;
 		}
-		else if (binarySearchTree.value < value && binarySearchTree.right){
-			return binarySearchTree.right.contains(value);
+		else if (this.value < value && this.right){
+			return this.right.contains(value);
 		}
-		else if (binarySearchTree.value > value && binarySearchTree.left){
-			return binarySearchTree.left.contains(value);
+		else if (this.value > value && this.left){
+			return this.left.contains(value);
 		}	
 		return false;
 	};
 
 	binarySearchTree.depthFirstLog= function(cb) {
-		cb(binarySearchTree.value);
-		if (binarySearchTree.left){
-			binarySearchTree.left.depthFirstLog(cb);
+		cb(this.value);
+		if (this.left){
+			this.left.depthFirstLog(cb);
 		}
-		if (binarySearchTree.right) {
-			binarySearchTree.right.depthFirstLog(cb);
+		if (this.right) {
+			this.right.depthFirstLog(cb);
 		}
 	};
 

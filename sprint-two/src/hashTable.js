@@ -34,15 +34,15 @@ HashTable.prototype.retrieve = function(k) {
 };
 
 HashTable.prototype.remove = function(k) {
+  if (this._count/this._limit <= 0.25) {
+    this.halve();
+  }
+
   var index = getIndexBelowMaxForKey(k, this._limit);
   var objAtIndex = this._storage.get(index);
   this._count--;
   delete objAtIndex[k];
   this._storage.set(index, objAtIndex);
-
-  if (this._count/this._limit <= 0.25 && this._limit > 8) {
-    this.halve();
-  }
 };
 
 HashTable.prototype.double = function() {
