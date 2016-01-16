@@ -25,7 +25,14 @@ describe('doublyLinkedList', function() {
     expect(doublyLinkedList.tail.value).to.equal(3);
   });
 
-  it('should remove the head from the list when removeHead is called', function(){
+  it('should designate a new head', function() {
+    doublyLinkedList.addToHead(9);
+    expect(doublyLinkedList.head.value).to.equal(9);
+    doublyLinkedList.addToHead(2);
+    expect(doublyLinkedList.head.value).to.equal(2);
+  });
+
+  it('should remove the head from the list when removeFromHead is called', function(){
     doublyLinkedList.addToTail(4);
     doublyLinkedList.addToTail(5);
     expect(doublyLinkedList.head.value).to.equal(4);
@@ -38,11 +45,17 @@ describe('doublyLinkedList', function() {
     expect(value).to.equal(null);
   });
 
-  it('should designate a new head', function() {
-    doublyLinkedList.addToHead(9);
-    expect(doublyLinkedList.head.value).to.equal(9);
-    doublyLinkedList.addToHead(2);
-    expect(doublyLinkedList.head.value).to.equal(2);
+  it('should remove the tail from the list when removeFromTail is called', function(){
+    doublyLinkedList.addToTail(4);
+    doublyLinkedList.addToTail(5);
+    expect(doublyLinkedList.tail.value).to.equal(5);
+    doublyLinkedList.removeFromTail();
+    expect(doublyLinkedList.head.value).to.equal(4);
+  });
+
+  it('should return null if removeHead called when empty', function(){
+    var value = doublyLinkedList.removeFromHead();
+    expect(value).to.equal(null);
   });
 });
 

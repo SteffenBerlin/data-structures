@@ -33,10 +33,8 @@ DoublyLinkedList.prototype.removeFromHead = function() {
 	var value = this.head === null ? null : this.head.value; 
 
   if (this.head === this.tail){
-    if(this.head){
-      this.head = null;
-      this.tail = null;
-    }
+    this.head = null;
+    this.tail = null;
   } else {
       this.head = this.head.next;
       this.head.prev = null;
@@ -46,7 +44,17 @@ DoublyLinkedList.prototype.removeFromHead = function() {
 };
 
 DoublyLinkedList.prototype.removeFromTail = function() {
-	// body...
+  var value = this.tail === null ? null : this.tail.value; 
+
+  if (this.tail === this.head){
+    this.head = null;
+    this.tail = null;
+  } else {
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+  }
+
+  return value;
 };
 
 DoublyLinkedList.prototype.contains = function(value) {
