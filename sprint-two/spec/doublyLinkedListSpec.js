@@ -40,7 +40,7 @@ describe('doublyLinkedList', function() {
     expect(doublyLinkedList.head.value).to.equal(5);
   });
 
-  it('should return null if removeHead called when empty', function(){
+  it('should return null if removeFromHead called when empty', function(){
     var value = doublyLinkedList.removeFromHead();
     expect(value).to.equal(null);
   });
@@ -53,9 +53,24 @@ describe('doublyLinkedList', function() {
     expect(doublyLinkedList.head.value).to.equal(4);
   });
 
-  it('should return null if removeHead called when empty', function(){
-    var value = doublyLinkedList.removeFromHead();
+  it('should return null if removeFromTail called when empty', function(){
+    var value = doublyLinkedList.removeFromTail();
     expect(value).to.equal(null);
+  });
+
+  it("should contain a value that was added", function(){
+    doublyLinkedList.addToTail(4);
+    doublyLinkedList.addToTail(5);
+    expect(doublyLinkedList.contains(4)).to.equal(true);
+    expect(doublyLinkedList.contains(5)).to.equal(true);
+    expect(doublyLinkedList.contains(6)).to.equal(false);
+  });
+
+  it('should not contain a value that was removed', function(){
+    doublyLinkedList.addToTail(4);
+    doublyLinkedList.addToTail(5);
+    doublyLinkedList.removeFromHead();
+    expect(doublyLinkedList.contains(4)).to.equal(false);
   });
 });
 
