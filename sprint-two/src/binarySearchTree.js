@@ -2,6 +2,7 @@ var BinarySearchTree = function(value) {
 	var binarySearchTree = {};
 	binarySearchTree.left = null;
 	binarySearchTree.right = null;
+	binarySearchTree.treeHeight = 1;
 	binarySearchTree.value = value;
 
 	binarySearchTree.insert = function(value) {
@@ -19,6 +20,12 @@ var BinarySearchTree = function(value) {
 				this.left.insert(value);
 			}
 		}
+		// var leftHeight = this.left === null ? 0 : this.left.treeHeight;
+		// var rightHeight = this.right === null ? 0 : this.right.treeHeight;
+		// this.treeHeight = Math.max(leftHeight, rightHeight) + 1;
+		// if ((leftHeight >= 2*rightHeight || leftHeight <= 2*rightHeight) && (Math.abs(leftHeight - rightHeight) > 1)){
+		// 	this.rebalance(this, leftHeight, rightHeight);
+		// }
 	};
 
 	binarySearchTree.contains = function(value) {
@@ -34,7 +41,7 @@ var BinarySearchTree = function(value) {
 		return false;
 	};
 
-	binarySearchTree.depthFirstLog= function(cb) {
+	binarySearchTree.depthFirstLog = function(cb) {
 		cb(this.value);
 		if (this.left){
 			this.left.depthFirstLog(cb);
@@ -43,6 +50,10 @@ var BinarySearchTree = function(value) {
 			this.right.depthFirstLog(cb);
 		}
 	};
+
+  binarySearchTree.prototype.rebalance = function(node, leftHeight, rightHeight) {
+    //we figured it out in pseudocode!!
+  };
 
 	return binarySearchTree;
 };
